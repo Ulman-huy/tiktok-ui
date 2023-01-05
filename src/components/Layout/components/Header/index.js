@@ -1,11 +1,13 @@
-import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { Wrapper as PopperWrapper } from '~/components/Popper';
+import { faCircleXmark, faMagnifyingGlass, faSignIn, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
+
+import Button from '~/components/Button';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
-import { useEffect, useState } from 'react';
 import AccountItem from '../../AcountItem';
 
 const cx = classNames.bind(styles)
@@ -51,7 +53,8 @@ function Header() {
                         </div>
                     </Tippy>
                 <div className={cx('actions')}>
-
+                    <Button text>Upload</Button>
+                    <Button primary>Log in</Button>
                 </div>
             </div>
         </header>

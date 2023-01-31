@@ -1,4 +1,4 @@
-import routesConfig from '~/config/routes';
+import config from '~/config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faEllipsisVertical,
@@ -96,7 +96,7 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={routesConfig.home} className={cx('logo-link')}>
+                <Link to={config.routes.home} className={cx('logo-link')}>
                     <img src={images.logo} alt="Tiktok" />
                 </Link>
 
@@ -135,7 +135,7 @@ function Header() {
                             <Image
                                 className={cx('user-avatar')}
                                 alt=""
-                                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/e93ab7d157041de938c4c0875cbf1ee8~c5_100x100.jpeg?x-expires=1673841600&x-signature=GglJewQHVVc8wH7YkKQsXdAHteo%3D"
+                                src="https://i.pinimg.com/originals/49/27/aa/4927aa285cd5c1de43e34da92d520b57.jpg"
                             />
                         ) : (
                             <button className={cx('more-btn')}>

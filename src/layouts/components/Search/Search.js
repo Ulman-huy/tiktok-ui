@@ -1,11 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
-import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Search.module.scss';
 import classNames from 'classnames/bind';
 import HesslessTippy from '@tippyjs/react/headless';
 
-import * as searchService from '~/apiService/searchService';
+import * as searchService from '~/services/searchService';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '../../AcountItem';
 import { SearchIcon } from '~/components/Icons';
@@ -52,13 +52,12 @@ function Search() {
     };
 
     const handleChange = (e) => {
-        const searchValue = e.target.value;
-        if (!searchValue.startsWith(' ')) {
+        const searchValueChange = e.target.value;
+        if (!searchValueChange.startsWith(' ')) {
             setSearchValue(e.target.value);
         }
     };
 
-    const handleSubmit = (e) => {};
     return (
         // Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
         <div>

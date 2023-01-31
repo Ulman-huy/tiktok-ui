@@ -4,11 +4,11 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
-    return ( 
+    return (
         <aside className={cx('wrapper')}>
             <h2>sidebar</h2>
         </aside>
-     );
+    );
 }
 
 export default Sidebar;

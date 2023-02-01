@@ -63,7 +63,7 @@ function Menu({ items = [], hideOnClick = false, children, onChange, ...passProp
     );
 }
 
-Menu.prototype = {
+Menu.propTypes = {
     items: PropTypes.array,
     hideOnClick: PropTypes.bool,
     children: PropTypes.node,

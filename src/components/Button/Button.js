@@ -63,7 +63,7 @@ function Button({
     );
 }
 
-Button.prototype = {
+Button.propTypes = {
     to: PropTypes.string ,
     href: PropTypes.string ,
     text: PropTypes.bool ,
@@ -74,7 +74,7 @@ Button.prototype = {
     disable: PropTypes.bool ,
     rounded: PropTypes.bool ,
     children: PropTypes.node.isRequired ,
-    className: PropTypes.bool ,
+    className: PropTypes.string ,
     leftIcon: PropTypes.node ,
     rightIcon: PropTypes.node ,
     onClick: PropTypes.func ,

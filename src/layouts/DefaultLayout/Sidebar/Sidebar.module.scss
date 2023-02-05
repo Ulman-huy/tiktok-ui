@@ -1,5 +1,19 @@
 .wrapper {
     width: 356px;
-    padding: 20px 0 26px 8px;
-    margin-left: -18px;
+    padding: 20px 8px 26px 6px;
+    margin-left: -36px;
+    font-family: 'IBM Plex Sans', var(--font-family), sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    perspective-origin: right top;
+    top: 60px;
+    bottom: 0;
+    width: 356px;
+    background: rgba(255, 255, 255, 1);
+    position: fixed;
+    z-index: 99;
+    padding-right: 0px;
 }

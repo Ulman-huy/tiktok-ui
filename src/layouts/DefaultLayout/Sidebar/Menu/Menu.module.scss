@@ -1,8 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+.menu {
+    margin-bottom: 8px;
+}
 .menu-item {
     display: flex;
     align-items: center;
     font-size: 1.8rem;
     font-weight: 700;
+    font-family: 'IBM Plex Sans', var(--font-family), sans-serif;
     padding: 8px;
     border-radius: 4px;
     transition: background-color ease-in-out 200ms;

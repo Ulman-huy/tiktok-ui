@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
@@ -6,31 +7,44 @@ import styles from './AccountPreview.module.scss';
 
 const cx = classNames.bind(styles);
 
-function AccountPreview() {
+function AccountPreview({ info, bio = false }) {
+    const convertCount = (count) => {
+        if (count >= 1000000) {
+            return (count / 100000).toFixed(1) + 'M ';
+        } else if (count < 1000000) {
+            return (count / 1000).toFixed(1) + 'K ';
+        }
+    };
+
     return (
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
-                <img
-                    className={cx('avatar')}
-                    src="https://i.pinimg.com/originals/49/27/aa/4927aa285cd5c1de43e34da92d520b57.jpg"
-                    alt=""
-                />
-                <Button className={cx('follow-btn')} primary>Follow</Button>
+                <img className={cx('avatar')} src={info.avatar} alt={info.full_name} />
+                <Button className={cx('follow-btn')} primary>
+                    Follow
+                </Button>
             </header>
             <div className={cx('body')}>
                 <p className={cx('nickname')}>
-                    <strong>Nguyen van A</strong>
+                    <strong>{info.nickname}</strong>
                     <FontAwesomeIcon className={cx('check')} icon={faCircleCheck} />
                 </p>
-                <p className={cx('name')}>Nguyen van A</p>
+                <p className={cx('name')}>{info.full_name}</p>
                 <p className={cx('analytics')}>
-                    <strong className={cx('value')}>8.2M </strong>
+                    <strong className={cx('value')}>{convertCount(info.followers_count)}</strong>
                     <span className={cx('label')}>Follower</span>
-                    <strong className={cx('value')}>422.2M </strong>
+                    <strong className={cx('value')}>{convertCount(info.likes_count)}</strong>
                     <span className={cx('label')}>Likes</span>
                 </p>
             </div>
+            {bio && <footer className={cx('bio')}>day la bio</footer>}
         </div>
     );
 }
+
+AccountPreview.propTypes = {
+    info: PropTypes.object,
+    bio: PropTypes.bool,
+};
+
 export default AccountPreview;

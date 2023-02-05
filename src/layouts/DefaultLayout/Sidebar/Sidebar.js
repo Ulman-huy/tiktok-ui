@@ -12,16 +12,48 @@ import {
 import SuggestedAccounts from '~/components/SuggestedAccounts';
 import styles from './Sidebar.module.scss';
 import classNames from 'classnames/bind';
+import Discover from './Discover';
+import Footer from './Footer';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
+    const [accountsData, setAccountsData] = useState({ suggestedAccounts: [], followerAccounts: [], tags: [] });
+
+    const suggestedAccountsURL = 'http://localhost:3000/suggested_accounts';
+    const followerAccountsURL = 'http://localhost:3000/follower_accounts';
+    const tagsURL = 'http://localhost:3000/tags';
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const suggestedAccounts = await axios(suggestedAccountsURL);
+            const followerAccounts = await axios(followerAccountsURL);
+            const tags = await axios(tagsURL);
+
+            setAccountsData({
+                suggestedAccounts: suggestedAccounts.data,
+                followerAccounts: followerAccounts.data,
+                tags: tags.data,
+            });
+        };
+
+        fetchApi();
+    }, []);
+
     return (
         <aside className={cx('wrapper')}>
             <Menu>
-                <MenuItem title="For You" to={config.routes.home} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
                 <MenuItem
-                    title="Following"
+                    title="Dành cho bạn"
+                    to={config.routes.home}
+                    icon={<HomeIcon />}
+                    activeIcon={<HomeActiveIcon />}
+                />
+                <MenuItem
+                    title="Đang Follow"
                     to={config.routes.following}
                     icon={<UserGroupIcon />}
                     activeIcon={<UserGroupActiveIcon />}
@@ -29,9 +61,20 @@ function Sidebar() {
                 <MenuItem title="LIVE" to={config.routes.live} icon={<LiveIcon />} activeIcon={<LiveActiveIcon />} />
             </Menu>
 
-            <SuggestedAccounts label="Suggested accounts" />
-            <SuggestedAccounts label="Following accounts" />
-
+            <SuggestedAccounts
+                label="Tài khoản được đề xuất"
+                bottomBtn="Xem tất cả"
+                tippy={true}
+                data={accountsData.suggestedAccounts}
+            />
+            <SuggestedAccounts
+                label="Các tài khoản đang follow"
+                bottomBtn="Xem thêm"
+                tippy={false}
+                data={accountsData.followerAccounts}
+            />
+            <Discover tags={accountsData.tags} />
+            <Footer />
         </aside>
     );
 }

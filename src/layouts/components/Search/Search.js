@@ -7,7 +7,7 @@ import HesslessTippy from '@tippyjs/react/headless';
 
 import * as searchService from '~/services/searchService';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import AccountItem from '../../AcountItem';
+import AccountItem from '../../../components/AcountItem';
 import { SearchIcon } from '~/components/Icons';
 import { useDebounce } from '~/hooks';
 
@@ -80,7 +80,7 @@ function Search() {
                     <input
                         ref={inputRef}
                         value={searchValue}
-                        placeholder="Search account and videos"
+                        placeholder="Tìm kiếm tài khoản và video"
                         spellCheck={false}
                         onChange={handleChange}
                         onFocus={() => setShowResult(true)}

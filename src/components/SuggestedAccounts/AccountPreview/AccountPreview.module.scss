@@ -1,6 +1,6 @@
 .wrapper {
     width: 320px;
-    padding: 20px;
+    padding: 12px 20px;
 }
 .header {
     display: flex;
@@ -32,7 +32,7 @@
     font-size: 1.4rem;
 }
 .analytics {
-    margin-top: 10px;
+    margin-top: 8px;
     font-size: 1.7rem;
 }
 .value ~ .value {
@@ -40,4 +40,13 @@
 }
 .label {
     color: #161823bf;
+}
+.bio {
+    width: 100%;
+    border-top: 1px solid #eaeaea;
+    margin-top: 16px;
+    padding-top: 16px;
+    font-family: "IBM Plex Sans", var(--font-family), sans-serif;
+    font-weight: 400;
+    font-size: 14px;
 }

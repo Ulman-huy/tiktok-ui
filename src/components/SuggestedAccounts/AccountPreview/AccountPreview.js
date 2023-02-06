@@ -4,10 +4,15 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 import Button from '~/components/Button';
 import styles from './AccountPreview.module.scss';
+import { useEffect, useRef } from 'react';
 
 const cx = classNames.bind(styles);
 
 function AccountPreview({ info, bio = false }) {
+    const createMarkup = () => {
+        return { __html: info.bio };
+    };
+
     const convertCount = (count) => {
         if (count >= 1000000) {
             return (count / 100000).toFixed(1) + 'M ';
@@ -37,7 +42,7 @@ function AccountPreview({ info, bio = false }) {
                     <span className={cx('label')}>Likes</span>
                 </p>
             </div>
-            {bio && <footer className={cx('bio')}>day la bio</footer>}
+            {bio && <footer dangerouslySetInnerHTML={createMarkup()} className={cx('bio')}></footer>}
         </div>
     );
 }

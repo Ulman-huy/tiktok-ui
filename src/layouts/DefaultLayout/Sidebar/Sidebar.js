@@ -16,7 +16,6 @@ import Discover from './Discover';
 import Footer from './Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
 
@@ -66,12 +65,14 @@ function Sidebar() {
                 bottomBtn="Xem tất cả"
                 tippy={true}
                 data={accountsData.suggestedAccounts}
+                item={5}
             />
             <SuggestedAccounts
                 label="Các tài khoản đang follow"
                 bottomBtn="Xem thêm"
                 tippy={false}
                 data={accountsData.followerAccounts}
+                item={11}
             />
             <Discover tags={accountsData.tags} />
             <Footer />

@@ -9,7 +9,7 @@ import { MusicIcon } from '../Icons';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountPreview from '~/components/SuggestedAccounts/AccountPreview';
 import Tippy from '@tippyjs/react/headless';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 const state = ['Follow', 'Đang Follow'];
@@ -19,11 +19,11 @@ function VideoItem({ info, follow = true }) {
 
     const handleFollow = () => {
         setFollowing((prev) => {
-            if (prev.isFollow == true) {
+            if (prev.isFollow) {
                 prev.isFollow = false;
                 return { isFollow: true, text: state[1] };
             }
-            if (prev.isFollow == false) {
+            if (!prev.isFollow) {
                 prev.isFollow = true;
                 return { isFollow: false, text: state[0] };
             }
@@ -54,7 +54,7 @@ function VideoItem({ info, follow = true }) {
                         <Image
                             className={cx('avatar')}
                             src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/35ddcd348bf14d830c65c611a188d8a3~c5_100x100.jpeg?x-expires=1675785600&x-signature=3v1j5QqhSlrXjQcrUC7DJrBTHYk%3D"
-                            alt=""
+                            alt="avatar"
                         />
                     </Link>
                 </Tippy>

@@ -1,34 +1,38 @@
-import Image from '~/components/Image';
-import { faCommentDots, faHeart, faShare } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faPause, faVolumeUp, faVolumeTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import Button from '~/components/Button';
-import styles from './VideoItem.module.scss';
-import { MusicIcon } from '../Icons';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
+import { useEffect, useRef, useState } from 'react';
+
+import { useElementOnScreen } from '~/hooks';
 import AccountPreview from '~/components/SuggestedAccounts/AccountPreview';
-import Tippy from '@tippyjs/react/headless';
-import { useState } from 'react';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
+import { faFlag } from '@fortawesome/free-regular-svg-icons';
+import video from '~/assets/video/video1.mp4';
+import styles from './VideoItem.module.scss';
+import Button from '~/components/Button';
+import Image from '~/components/Image';
+import { MusicIcon } from '../Icons';
+import Action from './Action';
 
 const cx = classNames.bind(styles);
 const state = ['Follow', 'Đang Follow'];
 
 function VideoItem({ info, follow = true }) {
     const [following, setFollowing] = useState({ isFollow: false, text: state[0] });
+    const [playing, setPlaying] = useState(true);
+    const [volume, setVolume] = useState(50);
 
-    const handleFollow = () => {
-        setFollowing((prev) => {
-            if (prev.isFollow) {
-                prev.isFollow = false;
-                return { isFollow: true, text: state[1] };
-            }
-            if (!prev.isFollow) {
-                prev.isFollow = true;
-                return { isFollow: false, text: state[0] };
-            }
-        });
+    const videoRef = useRef();
+    const volumeRef = useRef();
+
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.3,
     };
+    const isVisible = useElementOnScreen(options, videoRef);
 
     const renderPreview = (props) => {
         return (
@@ -41,6 +45,46 @@ function VideoItem({ info, follow = true }) {
             </div>
         );
     };
+    const handleFollow = () => {
+        setFollowing((prev) => {
+            if (prev.isFollow) {
+                prev.isFollow = false;
+                return { isFollow: false, text: state[0] };
+            } else {
+                prev.isFollow = true;
+                return { isFollow: true, text: state[1] };
+            }
+        });
+    };
+    // Handle Player/ Pause video
+    const handlePlay = () => {
+        if (playing) {
+            videoRef.current.pause();
+            setPlaying(!playing);
+        } else {
+            videoRef.current.play();
+            setPlaying(!playing);
+        }
+    };
+    // Handle change volume
+    const handleChangeVolume = (e) => {
+        videoRef.current.volume = e.target.value / 100;
+        setVolume(e.target.value);
+    };
+    // handle next video
+    useEffect(() => {
+        if (isVisible) {
+            if (!playing) {
+                videoRef.current.play();
+                setPlaying(true);
+            }
+        } else {
+            if (playing) {
+                videoRef.current.pause();
+                setPlaying(false);
+            }
+        }
+    }, [isVisible]);
     return (
         <div className={cx('wrapper')}>
             {follow && (
@@ -91,32 +135,39 @@ function VideoItem({ info, follow = true }) {
                 <div className={cx('container-video')}>
                     <div className={cx('div-video')}>
                         <div className={cx('absolute')}>
-                            <img src="" className={cx('img-model')} />
+                            <img src={''} className={cx('img-model')} />
                             <div className={cx('wrapper-video')}>
-                                <video className={cx('video')}> this is video</video>
+                                <Link to="/">
+                                    <video ref={videoRef} className={cx('video')} src={video} loop muted />
+                                </Link>
+                                <div className={cx('report')}>
+                                    <span>
+                                        <FontAwesomeIcon icon={faFlag} />
+                                    </span>
+                                    <span>Báo cáo</span>
+                                </div>
+                                <div className={cx('player')} onClick={handlePlay}>
+                                    {playing ? <FontAwesomeIcon icon={faPlay} /> : <FontAwesomeIcon icon={faPause} />}
+                                </div>{' '}
+                                <div className={cx('control-volume')}>
+                                    <FontAwesomeIcon icon={volume > 0 ? faVolumeUp : faVolumeTimes} />
+                                    <div className={cx('div-volume')}>
+                                        <input
+                                            ref={volumeRef}
+                                            min={0}
+                                            max={100}
+                                            value={volume}
+                                            step={1}
+                                            type="range"
+                                            className={cx('volume')}
+                                            onChange={handleChangeVolume}
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className={cx('action')}>
-                        <div className={cx('like-action')}>
-                            <Button className={cx('like-icon')}>
-                                <FontAwesomeIcon icon={faHeart} />
-                            </Button>
-                            <div className={cx('count')}>123</div>
-                        </div>
-                        <div className={cx('comment-action')}>
-                            <Button className={cx('comment-icon')}>
-                                <FontAwesomeIcon icon={faCommentDots} />
-                            </Button>
-                            <div className={cx('count')}>123k</div>
-                        </div>
-                        <div className={cx('share-action')}>
-                            <Button className={cx('share-icon')}>
-                                <FontAwesomeIcon icon={faShare} />
-                            </Button>
-                            <div className={cx('count')}>123</div>
-                        </div>
-                    </div>
+                    <Action />
                 </div>
             </div>
         </div>

@@ -4,7 +4,8 @@
 .wrapper {
     position: relative;
     padding-top: 24px;
-    margin-bottom: 20px;
+    display: inline-table;
+    padding-bottom: 20px;
 }
 .header {
     display: flex;
@@ -77,6 +78,7 @@
     line-height: 22px;
 }
 .hashtag {
+    width: 692px;
     font-weight: 600;
     padding: 2px 0;
     font-size: 16px;
@@ -111,13 +113,14 @@
 .container-video {
     position: relative;
     max-width: 290px;
+    display: block;
 }
 .div-video {
-    background-color: aquamarine;
     border-radius: 10px;
     position: relative;
     width: 100%;
     height: 100%;
+    display: block;
 }
 .absolute {
     position: absolute;
@@ -127,6 +130,7 @@
     top: 0;
 }
 .img-model {
+    border-radius: 10px;
     position: absolute;
     top: 0;
     left: 0;
@@ -138,13 +142,95 @@
 .wrapper-video {
     width: 100%;
     height: 100%;
+    &:hover {
+        .report,
+        .player,
+        .control-volume {
+            opacity: 1;
+        }
+    }
 }
+
+.report {
+    position: absolute;
+    right: 12px;
+    top: 18px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    svg {
+        font-size: 12px;
+        padding-right: 6px;
+    }
+}
+.player,
+.control-volume {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom: 28px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.report,
+.player,
+.control-volume {
+    opacity: 0;
+    transition: opacity 250ms ease-in-out;
+    padding: 4px 8px;
+}
+.player {
+    left: 20px;
+}
+.control-volume {
+    right: 20px;
+    &:hover {
+        .div-volume {
+            display: flex;
+        }
+    }
+}
+.div-volume {
+    display: none;
+    width: 24px;
+    background-color: rgba(22, 24, 31, 0.45);
+    height: 64px;
+    position: absolute;
+    left: 8px;
+    bottom: 34px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+.volume {
+    cursor: pointer;
+    transform: rotate(-90deg);
+    -webkit-appearance: none;
+    width: 50px;
+    height: 2px;
+    background-color: #ddd;
+}
+.volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #eaeaea;
+    width: 12px;
+    height: 12px;
+    border-radius: 50px;
+}
+
 .video {
     display: block;
+    border-radius: 10px;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
+// CSS Action video like/cmt/share
 .action {
     position: absolute;
     right: -66px;
@@ -175,7 +261,57 @@
     font-weight: 700;
     margin-top: 7px;
 }
-
+.share-list {
+    width: 280;
+    max-height: 448px;
+}
+.wrapper-list {
+    width: 280px;
+    max-height: 440px;
+    overflow-y: overlay;
+    padding-right: 8px;
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 12px solid #fff;
+    }
+}
+.item {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding: 11px 16px;
+    font-family: 'IBM Plex Sans', ProximaNova, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    .icon {
+        padding-right: 12px;
+    }
+    .title {
+        margin-bottom: 8px;
+    }
+    &:hover {
+        background-color: rgba(234, 234, 234, 0.5);
+    }
+}
+.share-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+        background-color: rgba(234, 234, 234, 0.5);
+    }
+    svg {
+        font-size: 22px;
+        padding: 3px 0;
+    }
+}
 @media screen and (max-width: 1919px) {
     .wrapper {
         height: calc(558px + (100vw - 768px) / 1152 * 100);

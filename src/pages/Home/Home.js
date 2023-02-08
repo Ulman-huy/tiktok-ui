@@ -10,6 +10,11 @@ function Home() {
         <div className={cx('wrapper')}>
             <VideoItem info={info} />
             <VideoItem info={info} />
+            <VideoItem info={info} />
+            <VideoItem info={info} />
+            <VideoItem info={info} />
+            <VideoItem info={info} />
+            <VideoItem info={info} />
         </div>
     );
 }

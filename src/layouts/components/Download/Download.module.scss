@@ -1,0 +1,209 @@
+// CSS Download button
+.download-container {
+    right: 24px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 7;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 8px;
+    transform: translateY(40px);
+    transition: all 400ms cubic-bezier(0.65, 0, 0.35, 1);
+    &.gotoTop {
+        bottom: 40px;
+    }
+}
+
+.download-btn {
+    margin-bottom: 12px;
+    display: flex;
+    position: relative;
+}
+.download {
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    color: rgba(22, 24, 35, 0.75);
+    font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+    position: absolute;
+    right: -4px;
+    border-radius: 52px;
+    bottom: 0;
+    padding: 7px;
+    height: 32px;
+    box-shadow: rgb(0 0 0 / 6%) 0px 2px 8px;
+    white-space: nowrap;
+    transition: transform 0.3s cubic-bezier(0.4, 0.14, 0.3, 1) 0s;
+    transform-origin: right bottom;
+    transform: scale(0);
+    &:hover {
+        border-color: rgba(22, 24, 35, 0.25);
+        background-color: #fff;
+    }
+}
+.download.show {
+    transform: scale(1);
+}
+.download-for {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    position: relative;
+    bottom: 40px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 6%) 0px 2px 8px;
+    border: 1px solid rgba(22, 24, 35, 0.03);
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0.14, 0.3, 1) 0s;
+    transform-origin: right bottom;
+    transform: scale(0);
+    right: -6px;
+}
+.download-for.show {
+    transform: scale(1);
+}
+.pc-phone {
+    margin-right: 48px;
+    margin-left: 16px;
+    .btn {
+        margin: 6px 0;
+        display: flex;
+        flex-direction: row;
+        padding: 8px;
+        border-radius: 8px;
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(234, 234, 234, 0.4);
+        }
+    }
+    svg {
+        margin-right: 8px;
+    }
+}
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #eaeaea;
+}
+.close {
+    right: 16px;
+    position: absolute;
+    top: 16px;
+    cursor: pointer;
+    font-size: 20px;
+}
+// QR
+.QR-download {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    &.show {
+        opacity: 0;
+    }
+}
+.QR-container {
+    &.show {
+        opacity: 0;
+    }
+    max-width: 400;
+    background-color: #fff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    position: relative;
+    outline: 0px;
+    max-width: calc(100vw - 32px);
+    box-shadow: #0000001f 0px 2px 12px;
+    border-radius: 8px;
+    overflow: hidden;
+    width: auto;
+    transition-property: transform, opacity;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+    opacity: 1;
+    transform: none;
+}
+.heading {
+    border-bottom: 0.5px solid rgba(22, 24, 35, 0.2);
+    padding: 24px 24px 16px 24px;
+    max-width: 400px;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    .title {
+        font-weight: 700;
+        line-height: 32px;
+        flex: 1;
+    }
+    svg {
+        cursor: pointer;
+        padding: 4px;
+    }
+}
+.QR-code {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .text {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 25px;
+        margin: 32px 0px 24px;
+        width: auto;
+        padding: 0px 24px;
+    }
+}
+.QR-image {
+    width: 174px;
+    height: 174px;
+}
+.store-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    padding: 24px 24px 60px;
+    .text {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 25px;
+    }
+    img {
+        width: 138px;
+        height: 40px;
+    }
+    .store {
+        margin-top: 16px;
+        display: flex;
+        flex-flow: row wrap;
+        width: 288px;
+        justify-content: space-between;
+    }
+}
+// button move top
+.move-top {
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary);
+    position: relative;
+    top: 0;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+    }
+}

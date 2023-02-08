@@ -49,7 +49,6 @@ function Menu({ items = [], hideOnClick = false, children, onChange, ...passProp
 
     return (
         <Tippy
-            {...passProps}
             interactive
             offset={[12, 8]}
             delay={[0, 700]}
@@ -57,6 +56,7 @@ function Menu({ items = [], hideOnClick = false, children, onChange, ...passProp
             hideOnClick={hideOnClick}
             render={renderResult}
             onHide={handleResetToFirstPage}
+            {...passProps}
         >
             {children}
         </Tippy>

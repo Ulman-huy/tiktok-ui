@@ -1,21 +1,11 @@
-import Menu from './Menu';
-import { MenuItem } from './Menu';
-import config from '~/config';
-import {
-    HomeIcon,
-    UserGroupIcon,
-    LiveIcon,
-    HomeActiveIcon,
-    UserGroupActiveIcon,
-    LiveActiveIcon,
-} from '~/components/Icons';
 import SuggestedAccounts from '~/components/SuggestedAccounts';
 import styles from './Sidebar.module.scss';
 import classNames from 'classnames/bind';
 import Discover from './Discover';
-import Footer from './Footer';
+import Footer from '../../components/Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Navbar from '~/layouts/components/Navbar';
 
 const cx = classNames.bind(styles);
 
@@ -44,21 +34,7 @@ function Sidebar() {
 
     return (
         <aside className={cx('wrapper')}>
-            <Menu>
-                <MenuItem
-                    title="Dành cho bạn"
-                    to={config.routes.home}
-                    icon={<HomeIcon />}
-                    activeIcon={<HomeActiveIcon />}
-                />
-                <MenuItem
-                    title="Đang Follow"
-                    to={config.routes.following}
-                    icon={<UserGroupIcon />}
-                    activeIcon={<UserGroupActiveIcon />}
-                />
-                <MenuItem title="LIVE" to={config.routes.live} icon={<LiveIcon />} activeIcon={<LiveActiveIcon />} />
-            </Menu>
+            <Navbar />
 
             <SuggestedAccounts
                 label="Tài khoản được đề xuất"

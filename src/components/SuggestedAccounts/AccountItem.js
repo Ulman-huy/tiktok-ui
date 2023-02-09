@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function AccountItem({ tippy, info }) {
+function AccountItem({ tippy, info, live }) {
     const renderPreview = (props) => {
         return (
             <div className={cx('preview')} tabIndex="-1" {...props}>
@@ -22,7 +22,6 @@ function AccountItem({ tippy, info }) {
             </div>
         );
     };
-
     return (
         <Link to={`/@${`${info.nickname}`}`}>
             {tippy && (
@@ -44,12 +43,21 @@ function AccountItem({ tippy, info }) {
                     <div className={cx('account-item')}>
                         <img className={cx('avatar')} src={info.avatar} alt={info.full_name} />
                         <div className={cx('item-info')}>
-                            <p className={cx('nickname')}>
+                            <p className={cx('nickname', { live: live })}>
                                 <strong>{info.nickname}</strong>
                                 {info.tick && <FontAwesomeIcon className={cx('check')} icon={faCircleCheck} />}
                             </p>
-                            <p className={cx('name')}>{info.full_name}</p>
+                            <p className={cx('name', { live: live })}>{info.full_name}</p>
                         </div>
+                        {live && (
+                            <div className={cx('count-live')}>
+                                <span>
+                                    {info.user_watch_live_count > 1000
+                                        ? (info.user_watch_live_count / 1000).toFixed(1) + 'k'
+                                        : info.user_watch_live_count}
+                                </span>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}

@@ -31,14 +31,20 @@
     object-fit: cover;
 }
 .item-info {
-    flex: 1;
     margin-left: 12px;
+    .live {
+        width: 120px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 .nickname {
     font-size: 1.6rem;
     color: #161823;
     line-height: 1;
     position: relative;
+
 }
 .check {
     font-size: 1.4rem;
@@ -51,6 +57,19 @@
     font-size: 1.2rem;
     color: #161823bf;
     position: absolute;
+}
+.count-live {
+    color: rgb(22, 24, 35);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    text-align: center;
+    margin-inline-start: 12px;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .more-btn {
     color: #fe2c55;

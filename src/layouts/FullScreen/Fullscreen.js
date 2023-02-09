@@ -8,10 +8,13 @@ const cx = classNames.bind(styles);
 function Fullscreen({ children }) {
     return (
         <div className={cx('wrapper')}>
-            <Header className={cx('header')}/>
+            <Header className={cx('header')} coins />
             <div className={cx('container')}>
                 <div className={cx('left-container')}>
-                    <Sidebar />
+                    <div className={cx('mask')}></div>
+                    <div className={cx('sidebar')}>
+                        <Sidebar />
+                    </div>
                 </div>
                 <div className={cx('right-container')}>{children}</div>
             </div>

@@ -7,13 +7,13 @@
     overflow-y: auto;
     overscroll-behavior-y: contain;
     perspective: 1px;
+    position: fixed;
     transform-style: preserve-3d;
     perspective-origin: right top;
     top: 60px;
     bottom: 0;
     width: 356px;
     background: rgba(255, 255, 255, 1);
-    position: fixed;
     z-index: 99;
     padding-right: 0px;
 }

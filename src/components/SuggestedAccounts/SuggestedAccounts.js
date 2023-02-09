@@ -8,13 +8,12 @@ import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
 
-function SuggestedAccounts({ label, bottomBtn, tippy, data, item = 5 }) {
+function SuggestedAccounts({ label, bottomBtn, tippy = false, data, item = 5, live = false }) {
     const [renderData, setRenderData] = useState({
         data: data.slice(0, item),
         isShow: true,
         text: bottomBtn,
     });
-
     const [loading, setLoading] = useState(false);
     const render = useDebounce(data, 1500);
 
@@ -34,7 +33,7 @@ function SuggestedAccounts({ label, bottomBtn, tippy, data, item = 5 }) {
             <div className={cx('list')}>
                 {loading && <AccountLoading />}
                 {renderData.data.map((info, index) => (
-                    <AccountItem key={index} tippy={tippy} info={info} />
+                    <AccountItem key={index} tippy={tippy} info={info} live={live} />
                 ))}
             </div>
             {!loading && (

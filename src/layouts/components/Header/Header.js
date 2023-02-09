@@ -20,7 +20,7 @@ import Button from '~/components/Button';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import Menu from '~/components/Popper/Menu';
-import { Letters, Message } from '~/components/Icons';
+import { CoinsIcon, Letters, Message } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
 import './Header.module.scss';
@@ -30,7 +30,7 @@ const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
-        title: 'English',
+        title: 'Ngôn ngữ',
         children: {
             title: 'Language',
             data: [
@@ -49,16 +49,16 @@ const MENU_ITEMS = [
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
-        title: 'Feedback and help',
+        title: 'Phản hồi và trợ giúp',
         to: '/feedback',
     },
     {
         icon: <FontAwesomeIcon icon={faKeyboard} />,
-        title: 'Keyboard shorcuts',
+        title: 'Phím tắt trên bàn phím',
     },
 ];
 
-function Header({ className }) {
+function Header({ className, coins = false }) {
     const currentUser = true;
 
     const handleMenuChange = (menuItem) => {
@@ -72,23 +72,23 @@ function Header({ className }) {
     const userMenu = [
         {
             icon: <FontAwesomeIcon icon={faUser} />,
-            title: 'View profile',
+            title: 'Xem hồ sơ',
             to: '/@huyy',
         },
         {
             icon: <FontAwesomeIcon icon={faCoins} />,
-            title: 'Get Coins',
+            title: 'Nhận xu',
             to: '/coin',
         },
         {
             icon: <FontAwesomeIcon icon={faGear} />,
-            title: 'Settings',
+            title: 'Cài đặt',
             to: '/settings',
         },
         ...MENU_ITEMS,
         {
             icon: <FontAwesomeIcon icon={faSignOut} />,
-            title: 'Log out',
+            title: 'Đăng xuất',
             to: '/logout',
             separate: true,
         },
@@ -123,6 +123,15 @@ function Header({ className }) {
                                     <span className={cx('notify')}>12</span>
                                 </button>
                             </Tippy>
+                            {coins && (
+                                <Button
+                                    rounded
+                                    leftIcon={<CoinsIcon />}
+                                    className={cx('upload', 'action-btn', 'coins')}
+                                >
+                                    Nhận xu
+                                </Button>
+                            )}
                         </div>
                     ) : (
                         <>

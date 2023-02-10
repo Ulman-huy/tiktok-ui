@@ -7,6 +7,14 @@ import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 
 function Live() {
+    const settings = {
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('feed-tabs')}>
@@ -29,9 +37,11 @@ function Live() {
             </div>
             <div className={cx('container')}>
                 <div className={cx('live-feed')}>
-                    <LiveItem />
-                    <LiveItem />
-                    <LiveItem />
+                        <LiveItem />
+                        <LiveItem />
+                        <LiveItem />
+                        <LiveItem />
+                        <LiveItem />
                 </div>
             </div>
         </div>

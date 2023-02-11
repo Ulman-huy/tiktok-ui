@@ -1,15 +1,21 @@
-import styles from './LiveItem.module.scss';
-import classNames from 'classnames/bind';
-import video from '~/assets/video/video1.mp4';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faRotateRight, faUser, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
+import { useRef, useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
+import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPause, faPlay, faRotateRight, faUser, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
+
+import styles from './LiveItem.module.scss';
+import video from '~/assets/video/video1.mp4';
 
 const cx = classNames.bind(styles);
 
 function LiveItem() {
+    const [isPlaying, setIsPlaying] = useState(true);
+
+    const videoRef = useRef(null);
+
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper')} style={{ height: '614px', marginBottom: '24px' }}>
             <div className={cx('container')}>
                 <div className={cx('click-watch')}>
                     <div className={cx('text')}>
@@ -26,7 +32,7 @@ function LiveItem() {
                     </div>
                 </div>
                 <div className={cx('div-video')}>
-                    <video src={video} className={cx('video')} />
+                    <video ref={videoRef} src={video} className={cx('video')} />
                 </div>
                 <div className={cx('info')}>
                     <div className={cx('div-info')}>
@@ -49,6 +55,7 @@ function LiveItem() {
                             >
                                 <div className={cx('play')}>
                                     <FontAwesomeIcon icon={faPlay} />
+                                    <FontAwesomeIcon icon={faPause} />
                                 </div>
                             </Tippy>
                             <Tippy

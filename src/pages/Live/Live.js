@@ -11,6 +11,7 @@ function Live() {
     const [translateY, setTranslateY] = useState(0);
     const [isLast, setIsLast] = useState(false);
     const [category, setCategory] = useState(true);
+    
 
     const liveRef = useRef(null);
 

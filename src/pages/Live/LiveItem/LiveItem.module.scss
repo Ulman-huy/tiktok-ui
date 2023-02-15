@@ -237,10 +237,12 @@
     line-height: 17px;
     font-weight: 600;
     margin-right: 8px;
+    span {
+        margin-left: 4px;
+    }
 }
 .off {
     color: rgba(255, 255, 255, 0.5);
-    margin-inline-start: 4px;
 }
 .volume {
     color: rgb(255, 255, 255);
@@ -296,6 +298,11 @@
         border-left: 12px solid transparent;
         border-right: 12px solid transparent;
         border-top: 12px solid rgb(84, 84, 84);
+    }
+    &.paused {
+        &::after {
+            left: 28px;
+        }
     }
 }
 .div-volume {

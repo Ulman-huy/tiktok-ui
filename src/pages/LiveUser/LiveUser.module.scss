@@ -1,0 +1,551 @@
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    background-color: #fff;
+}
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin-bottom: 0px;
+    top: 0;
+    overflow: hidden;
+}
+.live-container {
+    flex: 1 1 0%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: overlay;
+    width: 100%;
+    height: 100%;
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+    }
+}
+.live-header {
+    height: 64px;
+    width: 100%;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(34, 90, 89, 0.2);
+    border-top: none;
+}
+.live-info {
+    display: flex;
+    position: relative;
+    .div-tippy {
+        display: flex;
+    }
+    .avatar {
+        width: 41px;
+        height: 41px;
+        border-radius: 52px;
+    }
+    .info {
+        display: flex;
+        margin-left: 12px;
+    }
+    .nickname {
+        color: rgb(22, 24, 35);
+        font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 24px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+    }
+    .name {
+        color: rgba(22, 24, 35, 0.75);
+        font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0px 0px 0px 4px;
+        white-space: nowrap;
+    }
+    .text {
+        position: absolute;
+        display: flex;
+        bottom: -6px;
+        left: 53px;
+        p {
+            font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+            font-weight: 600;
+            margin-right: 12px;
+            font-size: 14px;
+            line-height: 20px;
+            color: rgba(22, 24, 35, 0.5);
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            max-height: 40px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+    }
+    .watch-user {
+        svg {
+            margin-right: 7px;
+            font-size: 14px;
+            color: rgb(22, 24, 35);
+        }
+    }
+    .count-user {
+        font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+.live-tools {
+    display: flex;
+    .share,
+    .more-btn {
+        margin-right: 4px;
+        border: 1px solid rgba(22, 24, 35, 0.12);
+        background-color: rgb(255, 255, 255);
+        color: rgb(22, 24, 35);
+        width: 34px;
+        height: 34px;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        border-radius: 4px;
+        cursor: pointer;
+        position: relative;
+    }
+    .btn-follow {
+        height: 34px;
+        padding: 8px 24px;
+    }
+}
+.live-content {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    min-height: 300px;
+    .live-tag {
+        background-image: linear-gradient(131.17deg, rgb(255, 23, 100), rgb(237, 52, 149));
+        border-radius: 2px;
+        color: rgb(255, 255, 255);
+        height: 20px;
+        display: inline-flex;
+        line-height: 20px;
+        text-align: center;
+        font-size: 13px;
+        -webkit-box-align: center;
+        align-items: center;
+        padding: 1px 5px 2px;
+        font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 600;
+        position: absolute;
+        top: 16px;
+        z-index: 2;
+        right: 16px;
+    }
+    .live-video {
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        background-color: rgb(0, 0, 0);
+        height: 537px;
+        & > .video {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            z-index: 1;
+        }
+    }
+}
+.video-player {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: 1;
+    padding: 0 8px 0 16px;
+    .play {
+        color: #fff;
+    }
+    .open-volume {
+        display: block;
+        width: 200px;
+        font-weight: 400;
+        position: absolute;
+        bottom: 0px;
+        z-index: 2;
+        height: 50px;
+        line-height: 50px;
+        font-size: 14px;
+        text-align: center;
+        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+        color: rgb(255, 255, 255);
+    }
+    .tools {
+        display: flex;
+        color: #fff;
+        & > div {
+            padding: 0 6px;
+        }
+    }
+}
+// Chat room css
+.chat-room {
+    width: 341px;
+    position: relative;
+    height: 100%;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.5s ease 0s;
+    z-index: 4;
+    flex-shrink: 0;
+    background-color: rgb(255, 255, 255);
+    border-radius: inherit;
+    box-shadow: rgb(0 0 0 / 12%) -2px 0px 4px;
+}
+.chat-container {
+    width: 100%;
+    height: 100%;
+}
+.chat-header {
+    border-bottom: 0.5px solid rgba(22, 24, 35, 0.12);
+    display: flex;
+    height: 48px;
+    width: 100%;
+    align-items: center;
+    padding: 0 16px;
+    font-size: 18px;
+    .close-chat {
+        padding-top: 6px;
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+    .title {
+        text-align: center;
+        width: 100%;
+        padding-right: 18px;
+        p {
+            font-weight: 700;
+            flex-shrink: 1;
+            font-family: 'IBM Plex Sans', ProximaNova, Arial, Helvetica, sans-serif;
+        }
+    }
+}
+.top-live {
+    position: relative;
+    height: 140px;
+    border-bottom: 0.5px solid rgba(22, 24, 35, 0.12);
+    padding: 0 4px;
+    .title {
+        display: flex;
+        height: 38px;
+        padding: 8px 10px;
+        cursor: pointer;
+        color: rgb(22, 24, 35);
+        margin-top: 2px;
+        p {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 18px;
+        }
+        span {
+            font-size: 11px;
+            line-height: 18px;
+            margin-left: 8px;
+        }
+    }
+}
+.top-user {
+    display: flex;
+    width: 100%;
+    height: calc(100% - 38px);
+    position: absolute;
+    top: 28px;
+    .top-1 {
+        display: flex;
+        width: 45%;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .one {
+        font-size: 50px;
+        font-weight: 800;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .user-image-t1 {
+        width: 32px;
+        height: 32px;
+        border-radius: 52px;
+        border: 1px solid #ea8827;
+    }
+    .name {
+        color: rgb(22, 24, 35);
+        font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 600;
+        width: 81px;
+        height: 18px;
+        font-size: 12px;
+        line-height: 22px;
+        margin: 4px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+        margin-bottom: 1px;
+    }
+    .coins {
+        display: flex;
+        align-items: center;
+        svg {
+            font-size: 8px;
+            margin-right: 4px;
+        }
+        p {
+            color: rgb(22, 24, 35);
+            font-size: 12px;
+            line-height: 18px;
+            vertical-align: middle;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    .top-2-3 {
+        display: flex;
+        flex-direction: column;
+        .two {
+            font-size: 36px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 800;
+        }
+    }
+    .user-2,
+    .user-3 {
+        display: flex;
+        .user {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin-left: 12px;
+        }
+    }
+    .info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 6px;
+        .name {
+            color: rgb(22, 24, 35);
+            font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+            font-weight: 600;
+            width: 81px;
+            height: 18px;
+            font-size: 12px;
+            line-height: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+            margin-bottom: 1px;
+        }
+    }
+}
+// Css Chat Room
+.chat-live {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 140px - 48px);
+    overflow: hidden;
+}
+.chat-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.chat-content {
+    flex: 1 1 0%;
+    padding: 0 4px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.chat-user {
+    display: flex;
+    overflow-anchor: none;
+    flex-shrink: 0;
+    width: 100%;
+    position: relative;
+    color: rgb(22, 24, 35);
+    display: flex;
+    line-height: 24px;
+    padding: 4px 12px;
+    border-radius: 2px;
+    .image {
+        width: 24px;
+        height: 24px;
+        border-radius: 52px;
+        margin-right: 8px;
+    }
+    .name {
+        color: rgb(22, 24, 35);
+        height: 24px;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        font-family: ProximaNova;
+        line-height: 24px;
+        flex: 0 0 auto;
+        order: 0;
+        cursor: pointer;
+        margin-inline-end: 4px;
+        display: block;
+        max-width: 104px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .chat-txt {
+        margin-block-start: 3px;
+        font-size: 16px;
+        line-height: 24px;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        vertical-align: middle;
+    }
+}
+.notification {
+    display: flex;
+    overflow-anchor: none;
+    align-items: center;
+    flex-shrink: 0;
+    width: 100%;
+    position: relative;
+    color: rgb(22, 24, 35);
+    display: flex;
+    line-height: 24px;
+    padding: 4px 12px;
+    border-radius: 2px;
+    height: fit-content;
+    overflow: hidden;
+    flex-shrink: 0;
+    max-height: 200px;
+    .icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 52px;
+        margin-right: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .name {
+        color: rgb(22, 24, 35);
+        height: 24px;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        font-family: ProximaNova;
+        flex: 0 0 auto;
+        order: 0;
+        cursor: pointer;
+        margin-inline-end: 4px;
+        display: block;
+        max-width: 104px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .title {
+        margin-block-end: 2px;
+        font-size: 16px;
+        line-height: 24px;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        vertical-align: middle;
+    }
+}
+.chat-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    min-height: 64px;
+    padding: 3px 14px;
+    border-radius: 0px 0px 8px 8px;
+    border-top: 0.5px solid rgba(22, 24, 35, 0.12);
+    background-color: rgb(255, 255, 255);
+    .div-chat {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+        flex-direction: row;
+        background-color: rgba(22, 24, 35, 0.06);
+        box-sizing: border-box;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 0px 9px;
+        height: 36px;
+        margin-right: 8px;
+    }
+    .input {
+        background-color: transparent;
+        height: 100%;
+        width: 100%;
+        &::placeholder {
+            color: rgba(22, 24, 35);
+            font-size: 14px;
+        }
+    }
+    .chat-emoji {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .send {
+        width: 24px;
+        height: 22px;
+        margin-left: 8px;
+        color: rgba(22, 24, 35, 0.5);
+    }
+    .input:empty ~ .send {
+        cursor: not-allowed;
+    }
+}

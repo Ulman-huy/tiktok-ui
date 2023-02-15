@@ -1,4 +1,4 @@
-import styles from './LiveUser.module.scss';
+import styles from './ChatRoom.module.scss';
 import classNames from 'classnames/bind';
 import Image from '~/components/Image';
 const cx = classNames.bind(styles);

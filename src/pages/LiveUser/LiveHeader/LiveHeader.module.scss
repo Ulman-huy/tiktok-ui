@@ -1,0 +1,176 @@
+.live-header {
+    height: 64px;
+    width: 100%;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(34, 90, 89, 0.2);
+    border-top: none;
+}
+.live-info {
+    display: flex;
+    position: relative;
+    .div-tippy {
+        display: flex;
+    }
+    .avatar {
+        width: 41px;
+        height: 41px;
+        border-radius: 52px;
+    }
+    .info {
+        display: flex;
+        margin-left: 12px;
+    }
+    .nickname {
+        color: rgb(22, 24, 35);
+        font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 24px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .name {
+        color: rgba(22, 24, 35, 0.75);
+        font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0px 0px 0px 4px;
+        white-space: nowrap;
+    }
+    .text {
+        position: absolute;
+        display: flex;
+        bottom: -6px;
+        left: 53px;
+        p {
+            font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+            font-weight: 600;
+            margin-right: 12px;
+            font-size: 14px;
+            line-height: 20px;
+            color: rgba(22, 24, 35, 0.5);
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            max-height: 40px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+    }
+    .watch-user {
+        svg {
+            margin-right: 7px;
+            font-size: 14px;
+            color: rgb(22, 24, 35);
+        }
+    }
+    .count-user {
+        font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+.live-tools {
+    display: flex;
+    .share,
+    .more-btn {
+        margin-right: 4px;
+        border: 1px solid rgba(22, 24, 35, 0.12);
+        background-color: rgb(255, 255, 255);
+        color: rgb(22, 24, 35);
+        width: 34px;
+        height: 34px;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        border-radius: 4px;
+        cursor: pointer;
+        position: relative;
+    }
+    .btn-follow {
+        height: 34px;
+        padding: 8px 24px;
+    }
+}
+// Share Tippy
+.wrapper-list {
+    width: 280px;
+    &::after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        right: 8px;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid #fff;
+    }
+}
+.item {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding: 11px 16px;
+    font-family: 'IBM Plex Sans', ProximaNova, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    .icon {
+        padding-right: 12px;
+    }
+    .title {
+        margin-bottom: 8px;
+    }
+    &:hover {
+        background-color: rgba(234, 234, 234, 0.5);
+    }
+}
+// More Tippy
+.more-wrapper {
+    &::after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        right: 8px;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid #fff;
+    }
+    .flag,
+    .ratings {
+        height: 48px;
+        display: flex;
+        align-items: center;
+        height: 48px;
+        padding: 11px 16px;
+        font-family: 'IBM Plex Sans', ProximaNova, Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        &:hover {
+            background-color: rgba(234, 234, 234, 0.5);
+        }
+    }
+    .icon {
+        font-size: 22px;
+    }
+    .text {
+        margin-left: 12px;
+    }
+}

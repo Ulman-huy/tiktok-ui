@@ -4,7 +4,7 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 import Button from '~/components/Button';
 import styles from './AccountPreview.module.scss';
-import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -23,18 +23,22 @@ function AccountPreview({ info, bio = false }) {
 
     return (
         <div className={cx('wrapper')}>
-            <header className={cx('header')}>
-                <img className={cx('avatar')} src={info.avatar} alt={info.full_name} />
+            <div className={cx('header')}>
+                <Link to="/@huyy">
+                    <img className={cx('avatar')} src={info.avatar} alt={info.full_name} />
+                </Link>
                 <Button className={cx('follow-btn')} primary>
                     Follow
                 </Button>
-            </header>
+            </div>
             <div className={cx('body')}>
-                <p className={cx('nickname')}>
-                    <strong>{info.nickname}</strong>
-                    <FontAwesomeIcon className={cx('check')} icon={faCircleCheck} />
-                </p>
-                <p className={cx('name')}>{info.full_name}</p>
+                <Link to="/@huyy">
+                    <p className={cx('nickname')}>
+                        <strong>{info.nickname}</strong>
+                        <FontAwesomeIcon className={cx('check')} icon={faCircleCheck} />
+                    </p>
+                    <p className={cx('name')}>{info.full_name}</p>
+                </Link>
                 <p className={cx('analytics')}>
                     <strong className={cx('value')}>{convertCount(info.followers_count)}</strong>
                     <span className={cx('label')}>Follower</span>

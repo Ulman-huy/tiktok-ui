@@ -230,7 +230,7 @@
     object-fit: cover;
 }
 
-// CSS Action video like/cmt/share
+// CSS Action video like/cmt
 .action {
     position: absolute;
     right: -66px;
@@ -240,13 +240,11 @@
     margin-left: 16px;
 }
 .like-action,
-.comment-action,
-.share-action {
+.comment-action {
     margin-bottom: 7px;
 }
 .like-icon,
-.comment-icon,
-.share-icon {
+.comment-icon {
     background-color: #1618230f;
     font-size: 22px;
     border-radius: 100%;
@@ -261,8 +259,18 @@
     font-weight: 700;
     margin-top: 7px;
 }
+.share-action {
+    margin-bottom: 7px;
+}
+.share-icon {
+    background-color: #1618230f;
+    font-size: 22px;
+    border-radius: 100%;
+    width: 48px;
+    height: 48px;
+}
 .share-list {
-    width: 280;
+    width: 280px;
     max-height: 448px;
 }
 .wrapper-list {
@@ -312,6 +320,7 @@
         padding: 3px 0;
     }
 }
+
 @media screen and (max-width: 1919px) {
     .wrapper {
         height: calc(558px + (100vw - 768px) / 1152 * 100);

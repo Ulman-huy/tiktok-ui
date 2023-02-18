@@ -5,6 +5,7 @@ import { faAngleLeft, faAngleRight, faCoins } from '@fortawesome/free-solid-svg-
 import GiftItem from './GiftItem';
 import Button from '~/components/Button';
 import { useState } from 'react';
+import { giftList } from '~/assets/images/gift';
 
 const cx = classNames.bind(styles);
 
@@ -13,7 +14,6 @@ function LiveGift() {
     const style = {
         transform: `translateX(${translateX}px)`,
     };
-
     const handlePrevGift = () => {
         setTranslateX((prev) => (prev === 0 ? prev : prev + 864));
     };
@@ -28,31 +28,9 @@ function LiveGift() {
                 </div>
                 <div className={cx('div-gifts')}>
                     <div className={cx('gifts')} style={style}>
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
-                        <GiftItem />
+                        {giftList.map((gift, index) => (
+                            <GiftItem key={index} giftImage={gift.image} giftName={gift.name} point={gift.point} />
+                        ))}
                     </div>
                 </div>
                 <div className={cx('btn', 'btn-right')} onClick={handleNextGift}>

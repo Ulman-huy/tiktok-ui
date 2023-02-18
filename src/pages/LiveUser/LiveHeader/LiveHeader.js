@@ -4,7 +4,7 @@ import Image from '~/components/Image';
 import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faShare, faEllipsis } from '@fortawesome/free-solid-svg-icons';
-import {  faFlag, faMessage } from '@fortawesome/free-regular-svg-icons';
+import { faFlag, faMessage } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountPreview from '~/components/SuggestedAccounts/AccountPreview';
@@ -13,6 +13,7 @@ import { info } from '../info';
 import {
     EmailIcon,
     FacebookIcon,
+    LeftArrowIcon,
     LineIcon,
     LinkedInIcon,
     LinkIcon,
@@ -22,6 +23,8 @@ import {
     TwitterIcon,
     WhatsAppIcon,
 } from '~/components/Icons';
+import { useContext } from 'react';
+import { Style } from '../LiveUser';
 
 const listShare = [
     {
@@ -68,6 +71,10 @@ const listShare = [
 const cx = classNames.bind(styles);
 
 function LiveHeader() {
+    const { hideChat, setHideChat } = useContext(Style);
+    const handleHideChat = () => {
+        setHideChat(false);
+    };
     const renderUserPreview = (props) => {
         return (
             <div className={cx('preview')} tabIndex="-1" {...props}>
@@ -171,6 +178,11 @@ function LiveHeader() {
                 <Button primary className={cx('btn-follow')}>
                     Follow
                 </Button>
+                {hideChat && (
+                    <div className={cx('open-chat')} onClick={handleHideChat}>
+                        <LeftArrowIcon />
+                    </div>
+                )}
             </div>
         </div>
     );

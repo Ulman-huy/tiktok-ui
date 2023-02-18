@@ -61,6 +61,23 @@
     height: 86px;
     position: relative;
     cursor: pointer;
+    .btn-send {
+        position: absolute;
+        top: 0;
+        height: 36px;
+        position: absolute;
+        top: -2px;
+        height: 30px;
+        left: -14px;
+        padding: 0px 26px;
+        opacity: 0;
+    }
+    &:hover {
+        .btn-send {
+            opacity: 1;
+            transition: opacity 0.2s ease;
+        }
+    }
 }
 .gift-image {
     height: 48px;
@@ -91,6 +108,7 @@
     font-size: 10px;
     line-height: 12px;
 }
+
 .live-point {
     height: 54px;
     margin: 0px 24px;

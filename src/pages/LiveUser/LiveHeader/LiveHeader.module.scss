@@ -174,3 +174,14 @@
         margin-left: 12px;
     }
 }
+.open-chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    svg {
+        width: 18px;
+        height: 18px;
+    }
+    padding: 0 16px;
+}

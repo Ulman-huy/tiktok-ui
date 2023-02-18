@@ -50,6 +50,7 @@
         ]
     },
     "devDependencies": {
+        "react-player": "^2.11.2",
         "sass": "^1.57.1"
     }
 }

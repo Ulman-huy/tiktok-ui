@@ -1,44 +1,36 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useContext } from 'react';
 import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPause, faPlay, faRotateRight, faUser, faVolumeHigh, faVolumeTimes } from '@fortawesome/free-solid-svg-icons';
-import { useElementOnScreen } from '~/hooks';
 
 import styles from './LiveItem.module.scss';
-import video from '~/assets/video/video1.mp4';
 import { Link } from 'react-router-dom';
+import ReactPlayer from 'react-player';
+import { Data } from '~/layouts/FullScreen/Fullscreen';
 
 const cx = classNames.bind(styles);
 
-function LiveItem() {
-    const [playing, setPlaying] = useState(true);
-    const [volume, setVolume] = useState(50);
+function LiveItem({ live }) {
+    const { setLiveUser } = useContext(Data);
+
+    const [playing, setPlaying] = useState(false);
+    const [volume, setVolume] = useState(25);
     const [autoNext, setAutoNext] = useState(true);
     const [count, setCount] = useState(20);
 
     const videoRef = useRef();
     const volumeRef = useRef();
 
-    const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.3,
-    };
-    const isVisible = useElementOnScreen(options, videoRef);
-
     const handlePlay = () => {
         if (playing) {
-            videoRef.current.pause();
-            setPlaying(!playing);
+            setPlaying(false);
         } else {
-            videoRef.current.play();
-            setPlaying(!playing);
+            setPlaying(true);
         }
     };
     // Handle change volume
     const handleChangeVolume = (e) => {
-        videoRef.current.volume = e.target.value / 100;
         setVolume(e.target.value);
     };
     const handleReset = () => {
@@ -47,36 +39,14 @@ function LiveItem() {
     const handleAutoNext = () => {
         setAutoNext((prev) => (prev ? false : true));
     };
-    // handle next video
-    useEffect(() => {
-        if (isVisible) {
-            if (!playing) {
-                videoRef.current.play();
-                setPlaying(true);
-            }
-        } else {
-            if (playing) {
-                videoRef.current.pause();
-                setPlaying(false);
-            }
-        }
-    }, [isVisible]);
-
-    // useEffect(() => {
-    //     if (autoNext) {
-    //         setTimeout(() => {
-    //             setCount((prev) => prev - 1);
-    //         }, 1000);
-    //         if (count === 0) {
-    //         }
-    //     }
-    // }, [count]);
-    let nickname = 'huyy';
+    const handleSetUrl = () => {
+        setLiveUser(live);
+    };
     return (
         <div className={cx('wrapper')} style={{ height: '614px', marginBottom: '24px' }}>
             <div className={cx('container')}>
                 <div className={cx('click-watch')}>
-                    <Link to={`/@${nickname}/live`} className={cx('text')}>
+                    <Link to={`/@${live.nickname}/live`} className={cx('text')} onClick={handleSetUrl}>
                         <div className={cx('line')}></div>
                         <div className={cx('animation')}>
                             <div className={cx('div-box')}>
@@ -90,34 +60,37 @@ function LiveItem() {
                     </Link>
                 </div>
                 <div className={cx('div-video')}>
-                    <video ref={videoRef} src={video} className={cx('video')} />
+                    <ReactPlayer
+                        url={live.url}
+                        width={'100%'}
+                        height={'100%'}
+                        playing={playing}
+                        volume={volume / 100}
+                        ref={videoRef}
+                    />
                 </div>
                 <div className={cx('info')}>
                     <div className={cx('div-info')}>
                         <div className={cx('live-tag')}>LIVE</div>
                         <div className={cx('user')}>
-                            <div className={cx('nickname')}>@sale_shop68</div>
+                            <div className={cx('nickname')}>{live.nickname}</div>
                             <div className={cx('user-watch')}>
                                 <FontAwesomeIcon icon={faUser} />
-                                <span className={cx('count')}>123</span>
+                                <span className={cx('count')}>{live.user_watch_live_count}</span>
                             </div>
                         </div>
-                        <div className={cx('description')}>bấm vào giỏ hàng để chốt đơn</div>
+                        <div className={cx('description')}>{live.bio}</div>
                     </div>
                     <div className={cx('container-player')}>
                         <div className={cx('tooltip')}>
                             <Tippy
-                                offset={[-14, 10]}
-                                placement="top-start"
-                                render={() => (
-                                    <div className={cx('sub-text', { paused: !playing })}>
-                                        {playing ? 'phát' : 'Tạm dừng'}
-                                    </div>
-                                )}
+                                offset={[0, 10]}
+                                placement="top"
+                                render={() => <div className={cx('sub-text')}>{playing ? 'Tạm dừng' : 'phát'}</div>}
                             >
                                 <div className={cx('play')} onClick={handlePlay}>
-                                    {playing && <FontAwesomeIcon icon={faPlay} />}
-                                    {!playing && <FontAwesomeIcon icon={faPause} />}
+                                    {!playing && <FontAwesomeIcon icon={faPlay} />}
+                                    {playing && <FontAwesomeIcon icon={faPause} />}
                                 </div>
                             </Tippy>
                             <Tippy

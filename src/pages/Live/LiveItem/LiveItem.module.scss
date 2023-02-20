@@ -285,7 +285,6 @@
     border-radius: 8px;
     padding: 12px;
     text-align: center;
-    z-index: 1001;
     color: rgb(255, 255, 255);
     position: relative;
     &::after {
@@ -298,11 +297,6 @@
         border-left: 12px solid transparent;
         border-right: 12px solid transparent;
         border-top: 12px solid rgb(84, 84, 84);
-    }
-    &.paused {
-        &::after {
-            left: 28px;
-        }
     }
 }
 .div-volume {

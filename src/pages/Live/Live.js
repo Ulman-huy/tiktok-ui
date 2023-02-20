@@ -3,15 +3,17 @@ import classNames from 'classnames/bind';
 import LiveItem from './LiveItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp, faL } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { Data } from '~/layouts/FullScreen/Fullscreen';
 
 const cx = classNames.bind(styles);
 
 function Live() {
+    const { data } = useContext(Data);
+
     const [translateY, setTranslateY] = useState(0);
     const [isLast, setIsLast] = useState(false);
     const [category, setCategory] = useState(true);
-    
 
     const liveRef = useRef(null);
 
@@ -65,16 +67,9 @@ function Live() {
             </div>
             <div className={cx('container')}>
                 <div className={cx('live-feed')} ref={liveRef} style={style}>
-                    <LiveItem />
-                    <LiveItem />
-                    <LiveItem />
-                    <LiveItem />
-                    <LiveItem />
-                    <LiveItem />
-                    <LiveItem />
-                    <LiveItem />
-                    <LiveItem />
-                    <LiveItem />
+                    {data.map((live) => (
+                        <LiveItem key={live.id} live={live} />
+                    ))}
                 </div>
             </div>
         </div>

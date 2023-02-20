@@ -190,7 +190,6 @@
     position: relative;
     width: 100%;
     height: calc(100% - 140px - 48px);
-    overflow: hidden;
 }
 .chat-container {
     width: 100%;
@@ -313,12 +312,12 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
+        position: relative;
         &:hover {
             background-color: rgba(22, 24, 35, 0.2);
             border-radius: 5px;
         }
     }
-
     .send {
         width: 24px;
         height: 22px;

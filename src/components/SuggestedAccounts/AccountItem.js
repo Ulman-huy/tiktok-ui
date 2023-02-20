@@ -7,10 +7,13 @@ import Tippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountPreview from './AccountPreview';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Data } from '~/layouts/FullScreen/Fullscreen';
 
 const cx = classNames.bind(styles);
 
 function AccountItem({ tippy, info, live }) {
+    const { setLiveUser } = useContext(Data);
     const renderPreview = (props) => {
         return (
             <div className={cx('preview')} tabIndex="-1" {...props}>
@@ -21,6 +24,9 @@ function AccountItem({ tippy, info, live }) {
                 </PopperWrapper>
             </div>
         );
+    };
+    const handleWatchLive = () => {
+        setLiveUser(info);
     };
     return (
         <Link to={`/@${`${info.nickname}`}`}>
@@ -40,7 +46,7 @@ function AccountItem({ tippy, info, live }) {
             )}
             {!tippy && (
                 <div>
-                    <div className={cx('account-item')}>
+                    <Link to={`/@${info.nickname}/live`} className={cx('account-item')} onClick={handleWatchLive}>
                         <img className={cx('avatar')} src={info.avatar} alt={info.full_name} />
                         <div className={cx('item-info')}>
                             <p className={cx('nickname', { live: live })}>
@@ -58,7 +64,7 @@ function AccountItem({ tippy, info, live }) {
                                 </span>
                             </div>
                         )}
-                    </div>
+                    </Link>
                 </div>
             )}
         </Link>

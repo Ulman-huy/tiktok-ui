@@ -8,24 +8,24 @@ import Tippy from '@tippyjs/react/headless';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Style } from '../LiveUser';
 import ReactPlayer from 'react-player';
+import { Data } from '~/layouts/FullScreen/Fullscreen';
 
 const cx = classNames.bind(styles);
 
 function LiveContent() {
+    const { liveUser } = useContext(Data);
     const { hideChat } = useContext(Style);
 
     const [playing, setPlaying] = useState(true);
-    const [volume, setVolume] = useState(0);
+    const [volume, setVolume] = useState(25);
     const [rotate, setRotate] = useState(0);
 
-    const videoRef = useRef();
     const volumeRef = useRef();
 
     const rotateVideo = {
         transform: `rotate(${rotate}deg)`,
     };
 
-    console.log(videoRef);
     const handlePlayLive = () => {
         if (playing) {
             setPlaying(false);
@@ -53,10 +53,9 @@ function LiveContent() {
         <div className={cx('live-content')}>
             <div className={cx('live-tag')}>LIVE</div>
             <div className={cx('live-video', { 'hide-chat': hideChat })}>
-                {/* <video className={cx('video')} src={video} ref={videoRef} autoPlay style={rotateVideo} /> */}
                 <ReactPlayer
                     className={cx('video')}
-                    url={'https://www.youtube.com/watch?v=UDVpgauOSds&ab_channel=Fin%27D'}
+                    url={liveUser.url}
                     autoPlay
                     width="100%"
                     height="100%"
@@ -67,9 +66,13 @@ function LiveContent() {
             </div>
             <div className={cx('video-player')}>
                 <div>
-                    <Tippy offset={[0, 15]} placement="top" render={() => <div className={cx('sub-text')}>phát</div>}>
+                    <Tippy
+                        offset={[0, 15]}
+                        placement="top"
+                        render={() => <div className={cx('sub-text')}>{playing ? 'Tạm dừng' : 'phát'}</div>}
+                    >
                         <div className={cx('play')} onClick={handlePlayLive}>
-                            <FontAwesomeIcon icon={playing ? faPlay : faPause} />
+                            <FontAwesomeIcon icon={playing ? faPause : faPlay} />
                         </div>
                     </Tippy>
                 </div>

@@ -5,7 +5,7 @@ import LiveContent from './LiveContent';
 import LiveGift from './LiveGift';
 import ChatRoom from './ChatRoom';
 import LiveSuggest from './LiveSuggest';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useRef, useState } from 'react';
 
 const cx = classNames.bind(styles);
 

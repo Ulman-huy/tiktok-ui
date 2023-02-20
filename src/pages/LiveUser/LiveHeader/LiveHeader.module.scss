@@ -52,6 +52,7 @@
     .text {
         position: absolute;
         display: flex;
+        align-items: flex-end;
         bottom: -6px;
         left: 53px;
         p {
@@ -62,14 +63,14 @@
             line-height: 20px;
             color: rgba(22, 24, 35, 0.5);
             text-overflow: ellipsis;
-            -webkit-line-clamp: 2;
+            white-space: nowrap;
             overflow: hidden;
-            max-height: 40px;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
         }
     }
     .watch-user {
+        display: flex;
+        align-items: center;
         svg {
             margin-right: 7px;
             font-size: 14px;
@@ -80,7 +81,7 @@
         font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
         font-weight: 600;
         font-size: 14px;
-        line-height: 20px;
+        align-items: center;
     }
 }
 .live-tools {

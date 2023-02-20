@@ -11,12 +11,14 @@ import { useContext, useState } from 'react';
 import { Style } from '../LiveUser';
 import Button from '~/components/Button';
 import Tippy from '@tippyjs/react/headless';
+import EmojiPicker from 'emoji-picker-react';
 
 const cx = classNames.bind(styles);
 
 function ChatRoom() {
     const { hideChat, setHideChat } = useContext(Style);
     const [showListTopLive, setListTopLive] = useState(false);
+    const [showEmoji, setShowEmoji] = useState(false);
 
     const handleHideChatRoom = () => {
         setHideChat(true);
@@ -26,6 +28,9 @@ function ChatRoom() {
     };
     const handleHideListTopLive = () => {
         setListTopLive(false);
+    };
+    const handleEmoji = () => {
+        setShowEmoji(true);
     };
     return (
         <div className={cx('chat-room', { 'hide-chat': hideChat })}>
@@ -103,8 +108,22 @@ function ChatRoom() {
                             <div className={cx('chat-input')}>
                                 <div className={cx('div-chat')}>
                                     <input className={cx('input')} placeholder="Thêm bình luận..." />
-                                    <Tippy render={() => <div className={cx('sub-text')}>Nhấn để thêm emoji</div>}>
-                                        <div className={cx('chat-emoji')}>
+                                    <Tippy
+                                        interactive={showEmoji}
+                                        render={() => (
+                                            <div>
+                                                {!showEmoji && (
+                                                    <div className={cx('sub-text')}>Nhấn để thêm emoji </div>
+                                                )}
+                                                {showEmoji && (
+                                                    <div className={cx('emoji-picker')}>
+                                                        <EmojiPicker />
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    >
+                                        <div className={cx('chat-emoji')} onClick={handleEmoji}>
                                             <FontAwesomeIcon icon={faFaceDizzy} />
                                         </div>
                                     </Tippy>

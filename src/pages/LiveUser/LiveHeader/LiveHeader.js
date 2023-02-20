@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountPreview from '~/components/SuggestedAccounts/AccountPreview';
 import Button from '~/components/Button';
-import { info } from '../info';
 import {
     EmailIcon,
     FacebookIcon,
@@ -25,6 +24,7 @@ import {
 } from '~/components/Icons';
 import { useContext } from 'react';
 import { Style } from '../LiveUser';
+import { Data } from '~/layouts/FullScreen/Fullscreen';
 
 const listShare = [
     {
@@ -71,6 +71,8 @@ const listShare = [
 const cx = classNames.bind(styles);
 
 function LiveHeader() {
+    const { liveUser } = useContext(Data);
+
     const { hideChat, setHideChat } = useContext(Style);
     const handleHideChat = () => {
         setHideChat(false);
@@ -80,7 +82,7 @@ function LiveHeader() {
             <div className={cx('preview')} tabIndex="-1" {...props}>
                 <PopperWrapper>
                     <div className={cx('preview')}>
-                        <AccountPreview info={info} />
+                        <AccountPreview info={liveUser} />
                     </div>
                 </PopperWrapper>
             </div>
@@ -131,20 +133,20 @@ function LiveHeader() {
                         placement="bottom-start"
                         render={renderUserPreview}
                     >
-                        <Link to="/@huyy" className={cx('div-tippy')}>
-                            <Image src="" alt="" className={cx('avatar')} />
+                        <Link to={`/@${liveUser.nickname}`} className={cx('div-tippy')} target="_blank">
+                            <Image src={liveUser.avatar} alt="" className={cx('avatar')} />
                             <div className={cx('info')}>
-                                <span className={cx('nickname')}>thuthao.923</span>
-                                <span className={cx('name')}>Thu Thảo</span>
+                                <span className={cx('nickname')}>{liveUser.nickname}</span>
+                                <span className={cx('name')}>{liveUser.full_name}</span>
                             </div>
                         </Link>
                     </Tippy>
                 </div>
                 <div className={cx('text')}>
-                    <p>LeGo săn quà</p>
+                    <p>{liveUser.bio}</p>
                     <span className={cx('watch-user')}>
                         <FontAwesomeIcon icon={faUser} />
-                        <span className={cx('count-user')}>10</span>
+                        <span className={cx('count-user')}>{liveUser.user_watch_live_count}</span>
                     </span>
                 </div>
             </div>

@@ -7,13 +7,10 @@ import Tippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountPreview from './AccountPreview';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { Data } from '~/layouts/FullScreen/Fullscreen';
 
 const cx = classNames.bind(styles);
 
-function AccountItem({ tippy, info, live }) {
-    const { setLiveUser } = useContext(Data);
+function AccountItem({ tippy, info, live, onHandle }) {
     const renderPreview = (props) => {
         return (
             <div className={cx('preview')} tabIndex="-1" {...props}>
@@ -25,15 +22,12 @@ function AccountItem({ tippy, info, live }) {
             </div>
         );
     };
-    const handleWatchLive = () => {
-        setLiveUser(info);
-    };
     return (
-        <Link to={`/@${`${info.nickname}`}`}>
+        <Link to={live ? `/@${info.nickname}/live` : `/@${info.nickname}`}>
             {tippy && (
                 <Tippy interactive offset={[-30, 0]} delay={[800, 0]} placement="bottom-start" render={renderPreview}>
                     <div className={cx('account-item')}>
-                        <img className={cx('avatar')} src={info.avatar} alt={info.full_name} />
+                        <img className={cx('avatar')} src={'' || info.avatar} alt={info.full_name} />
                         <div className={cx('item-info')}>
                             <p className={cx('nickname')}>
                                 <strong>{info.nickname}</strong>
@@ -46,7 +40,7 @@ function AccountItem({ tippy, info, live }) {
             )}
             {!tippy && (
                 <div>
-                    <Link to={`/@${info.nickname}/live`} className={cx('account-item')} onClick={handleWatchLive}>
+                    <div className={cx('account-item')} onClick={onHandle}>
                         <img className={cx('avatar')} src={info.avatar} alt={info.full_name} />
                         <div className={cx('item-info')}>
                             <p className={cx('nickname', { live: live })}>
@@ -64,7 +58,7 @@ function AccountItem({ tippy, info, live }) {
                                 </span>
                             </div>
                         )}
-                    </Link>
+                    </div>
                 </div>
             )}
         </Link>

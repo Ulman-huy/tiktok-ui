@@ -15,13 +15,6 @@ function Download() {
     const [QR, setQR] = useState(false);
     const [showGoToTop, setShowGoToTop] = useState(false);
 
-    const mountedStyle = {
-        transition: 'top 0.3s cubic-bezier(0.4, 0.14, 0.3, 1) 0s',
-    };
-    const unmountedStyle = {
-        transition: 'top 0.3s cubic-bezier(0.4, 0.14, 0.3, 1) 0s',
-    };
-
     const handleChoseDownload = () => {
         setDownload(true);
     };
@@ -42,7 +35,9 @@ function Download() {
             setHide(false);
         }, 300);
     };
-
+    const handleMoveTop = () => {
+        console.log(window);
+    };
     useEffect(() => {
         const handleScroll = () => {
             setShowGoToTop(window.scrollY > 200);
@@ -109,9 +104,11 @@ function Download() {
                     </section>
                 </div>
             )}
-            <div className={cx('download-container',  {
-                        gotoTop: showGoToTop,
-                    })}>
+            <div
+                className={cx('download-container', {
+                    gotoTop: showGoToTop,
+                })}
+            >
                 <div className={cx('download-btn')}>
                     <Button
                         small
@@ -144,9 +141,7 @@ function Download() {
                         </div>
                     </div>
                 </div>
-                <div
-                    className={cx('move-top')}
-                >
+                <div className={cx('move-top')} onClick={handleMoveTop}>
                     <MoveTopIcon />
                 </div>
             </div>

@@ -13,12 +13,12 @@ function Fullscreen({ children }) {
     const [liveList, setLiveList] = useState([]);
     const [liveUser, setLiveUser] = useState({});
     useEffect(() => {
-        axios.get('http://localhost:3000/live').then((res) => {
+        axios.get('https://ulman-huy.github.io/api/live.json').then((res) => {
             setLiveList(res.data);
         });
     }, []);
-    console.log(liveList);
 
+    
     return (
         <div className={cx('wrapper')}>
             <Header className={cx('header')} coins />

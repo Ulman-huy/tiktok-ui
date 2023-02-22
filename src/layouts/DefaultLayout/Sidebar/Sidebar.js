@@ -12,9 +12,9 @@ const cx = classNames.bind(styles);
 function Sidebar() {
     const [accountsData, setAccountsData] = useState({ suggestedAccounts: [], followerAccounts: [], tags: [] });
 
-    const suggestedAccountsURL = 'http://localhost:3000/suggested_accounts';
-    const followerAccountsURL = 'http://localhost:3000/follower_accounts';
-    const tagsURL = 'http://localhost:3000/tags';
+    const suggestedAccountsURL = 'https://ulman-huy.github.io/api/suggested_accounts.json';
+    const followerAccountsURL = 'https://ulman-huy.github.io/api/follower_accounts.json';
+    const tagsURL = 'https://ulman-huy.github.io/api/tags.json';
 
     useEffect(() => {
         const fetchApi = async () => {

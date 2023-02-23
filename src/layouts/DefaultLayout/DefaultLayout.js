@@ -37,6 +37,7 @@ function DefaultLayout({ children }) {
 
         fetchApi();
     }, []);
+
     return (
         <div className={cx('wrapper', { fullscreen: fullscreen })}>
             <DataDefault.Provider value={{ accountsData: accountsData, profile, setProfile }}>

@@ -7,22 +7,22 @@ import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
-export const Data = createContext();
+export const DataLive = createContext();
 
 function Fullscreen({ children }) {
     const [liveList, setLiveList] = useState([]);
     const [liveUser, setLiveUser] = useState({});
+    
     useEffect(() => {
         axios.get('https://ulman-huy.github.io/api/live.json').then((res) => {
             setLiveList(res.data);
         });
     }, []);
 
-    
     return (
         <div className={cx('wrapper')}>
             <Header className={cx('header')} coins />
-            <Data.Provider value={{ data: liveList, liveUser, setLiveUser }}>
+            <DataLive.Provider value={{ data: liveList, liveUser, setLiveUser }}>
                 <div className={cx('container')}>
                     <div className={cx('left-container')}>
                         <div className={cx('mask')}></div>
@@ -32,7 +32,7 @@ function Fullscreen({ children }) {
                     </div>
                     <div className={cx('right-container')}>{children}</div>
                 </div>
-            </Data.Provider>
+            </DataLive.Provider>
         </div>
     );
 }

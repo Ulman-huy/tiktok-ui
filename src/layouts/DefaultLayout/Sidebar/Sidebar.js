@@ -3,37 +3,21 @@ import styles from './Sidebar.module.scss';
 import classNames from 'classnames/bind';
 import Discover from './Discover';
 import Footer from '../../components/Footer';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '~/layouts/components/Navbar';
+import { DataDefault } from '../DefaultLayout';
+import { GlobalContext } from '~/App';
+// import AccountsProfile from '~/components/AccountsProfile/AccountsProfile';
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
-    const [accountsData, setAccountsData] = useState({ suggestedAccounts: [], followerAccounts: [], tags: [] });
-
-    const suggestedAccountsURL = 'https://ulman-huy.github.io/api/suggested_accounts.json';
-    const followerAccountsURL = 'https://ulman-huy.github.io/api/follower_accounts.json';
-    const tagsURL = 'https://ulman-huy.github.io/api/tags.json';
-
-    useEffect(() => {
-        const fetchApi = async () => {
-            const suggestedAccounts = await axios(suggestedAccountsURL);
-            const followerAccounts = await axios(followerAccountsURL);
-            const tags = await axios(tagsURL);
-
-            setAccountsData({
-                suggestedAccounts: suggestedAccounts.data,
-                followerAccounts: followerAccounts.data,
-                tags: tags.data,
-            });
-        };
-
-        fetchApi();
-    }, []);
+    const { fullscreen } = useContext(GlobalContext);
+    const { accountsData } = useContext(DataDefault);
 
     return (
-        <aside className={cx('wrapper')}>
+        <aside className={cx('wrapper', { fullscreen: fullscreen })}>
             <Navbar />
 
             <SuggestedAccounts

@@ -1,43 +1,40 @@
 import axios from 'axios';
-import { useState, useEffect, useContext, useCallback, useLayoutEffect } from 'react';
+import { useState, useEffect, useContext, useCallback } from 'react';
 import Footer from '~/layouts/components/Footer';
 import Navbar from '~/layouts/components/Navbar';
 import styles from './Sidebar.module.scss';
 import classNames from 'classnames/bind';
-import SuggestedAccounts from '~/components/SuggestedAccounts';
-import { Data } from '../Fullscreen';
+import { DataLive } from '../Fullscreen';
+import AccountsLive from '~/components/AccountsLive';
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
-    const [accountsData, setAccountsData] = useState({ suggestedAccounts: [] });
-    const { data, setLiveUser } = useContext(Data);
+    const { data, setLiveUser } = useContext(DataLive);
+
+    const [accountsData, setAccountsData] = useState([]);
+
     const suggestedAccountsURL = 'https://ulman-huy.github.io/api/suggested_accounts.json';
+
     useEffect(() => {
         const fetchApi = async () => {
             const suggestedAccounts = await axios(suggestedAccountsURL);
 
-            setAccountsData({
-                suggestedAccounts: suggestedAccounts.data,
-            });
+            setAccountsData(suggestedAccounts.data);
         };
 
         fetchApi();
     }, []);
-    const handleClick = useCallback(() => {
-        setLiveUser(data.find((live) => live.nickname === window.location.pathname.slice(2, -5)));
-    });
     
     return (
         <aside className={cx('wrapper')}>
             <Navbar />
-            <SuggestedAccounts label="Đang Follow" bottomBtn="Xem tất cả" data={accountsData.suggestedAccounts} live />
-            <SuggestedAccounts
+            <AccountsLive label="Đang Follow" bottomBtn="Xem tất cả" data={accountsData} live />
+            <AccountsLive
                 label="Các chủ phòng được đề xuất"
                 bottomBtn="Xem tất cả"
                 data={data}
                 live
-                onHandle={handleClick}
             />
             <Footer />
         </aside>

@@ -2,8 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1 1 auto;
     font-family: 'IBM Plex Sans', var(--font-family), sans-serif;
     position: relative;
+    &.fullscreen {
+        flex: none;
+    }
 }
 
 .container {
@@ -12,15 +16,21 @@
     width: var(--default-layout-width);
     display: flex;
     max-width: 1150px;
-    justify-content: space-between;
     align-self: center;
-    flex: 1 1 auto;
-    .wrapper {
-        position: relative;
-    }
-    .wrapper:last-child {
-        width: 1150px;
-        margin-top: 20px;
+    &.fullscreen {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        .wrapper-sidebar {
+            width: 240px;
+        }
+        .wrapper-content {
+            width: 100%;
+        }
+        .content {
+            width: 100%;
+            margin-left: 0;
+        }
     }
 }
 .mask {
@@ -33,5 +43,8 @@
     width: 692px;
     max-width: 692px;
     position: relative;
+    &.fullscreen {
+        width: 100%;
+        max-width: 100%;
+    }
 }
-

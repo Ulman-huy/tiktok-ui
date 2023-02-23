@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import { Data } from '~/layouts/FullScreen/Fullscreen';
+import { DataLive } from '~/layouts/FullScreen/Fullscreen';
 import ReactPlayer from 'react-player';
 const cx = classNames.bind(styles);
 
 function SuggestItem({ liveSuggest }) {
-    const { setLiveUser } = useContext(Data);
+    const { setLiveUser } = useContext(DataLive);
     const handleSetLiveUrl = () => {
         setLiveUser(liveSuggest);
     };

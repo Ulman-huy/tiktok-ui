@@ -4,7 +4,6 @@
 .wrapper {
     position: relative;
     padding-top: 24px;
-    display: inline-table;
     padding-bottom: 20px;
 }
 .header {
@@ -15,8 +14,8 @@
 }
 .follow {
     position: absolute;
-    right: 0;
-    top: 28px;
+    right: -6px;
+    top: 32px;
     min-height: 28px;
     font-size: 16px;
     font-weight: 600;
@@ -323,7 +322,7 @@
 
 @media screen and (max-width: 1919px) {
     .wrapper {
-        height: calc(558px + (100vw - 768px) / 1152 * 100);
+        height: calc(584px + (100vw - 768px) / 1152 * 100);
     }
     .container-video {
         height: calc(450px + (100vw - 768px) / 1152 * 100);

@@ -24,6 +24,8 @@ import { CoinsIcon, Letters, Message } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
 import './Header.module.scss';
+import { useContext } from 'react';
+import { GlobalContext } from '~/App';
 
 const cx = classNames.bind(styles);
 
@@ -59,6 +61,8 @@ const MENU_ITEMS = [
 ];
 
 function Header({ className, coins = false }) {
+    const { fullscreen, setFullscreen } = useContext(GlobalContext);
+
     const currentUser = true;
 
     const handleMenuChange = (menuItem) => {
@@ -95,8 +99,8 @@ function Header({ className, coins = false }) {
     ];
     return (
         <header className={cx('wrapper', { [className]: className })}>
-            <div className={cx('inner', { [className]: className })}>
-                <Link to={config.routes.home} className={cx('logo-link')}>
+            <div className={cx('inner', { [className]: className, fullscreen: fullscreen })}>
+                <Link to={config.routes.home} className={cx('logo-link')} onClick={() => setFullscreen(false)}>
                     <img src={images.logo} alt="Tiktok" />
                 </Link>
 

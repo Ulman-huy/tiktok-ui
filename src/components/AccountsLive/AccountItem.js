@@ -1,21 +1,20 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import styles from './SuggestedAccounts.module.scss';
+import styles from './AccountsLive.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountPreview from './AccountPreview';
 import { Link } from 'react-router-dom';
-import { DataDefault } from '~/layouts/DefaultLayout/DefaultLayout';
 import { useContext } from 'react';
-import { GlobalContext } from '~/App';
+import { DataLive } from '~/layouts/FullScreen/Fullscreen';
 
 const cx = classNames.bind(styles);
 
-function AccountItem({ tippy, info, live, profile }) {
-    const { fullscreen, setFullscreen } = useContext(GlobalContext);
-    const { setProfile } = useContext(DataDefault);
+function AccountItem({ tippy, info, live }) {
+    const { setLiveUser } = useContext(DataLive);
+
     const renderPreview = (props) => {
         return (
             <div className={cx('preview')} tabIndex="-1" {...props}>
@@ -27,19 +26,14 @@ function AccountItem({ tippy, info, live, profile }) {
             </div>
         );
     };
-
-    const handleSetFullscreen = () => {
-        setFullscreen(true);
-        setProfile(info);
-    };
     return (
-        <Link to={`/@${info.nickname}`} onClick={handleSetFullscreen}>
+        <Link to={`/@${info.nickname}/live`} onClick={() => setLiveUser(info)}>
             {tippy && (
                 <Tippy interactive offset={[-30, 0]} delay={[800, 0]} placement="bottom-start" render={renderPreview}>
                     <div className={cx('account-item')}>
-                        <img className={cx('avatar')} src={info.avatar} alt={info.full_name} />
+                        <img className={cx('avatar')} src={'' || info.avatar} alt={info.full_name} />
                         <div className={cx('item-info')}>
-                            <p className={cx('nickname', { profile: profile, fullscreen: fullscreen })}>
+                            <p className={cx('nickname')}>
                                 <strong>{info.nickname}</strong>
                                 <FontAwesomeIcon className={cx('check')} icon={faCircleCheck} />
                             </p>
@@ -59,6 +53,15 @@ function AccountItem({ tippy, info, live, profile }) {
                             </p>
                             <p className={cx('name', { live: live })}>{info.full_name}</p>
                         </div>
+                        {live && (
+                            <div className={cx('count-live')}>
+                                <span>
+                                    {info.user_watch_live_count > 1000
+                                        ? (info.user_watch_live_count / 1000).toFixed(1) + 'k'
+                                        : info.user_watch_live_count}
+                                </span>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}

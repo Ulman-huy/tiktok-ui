@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
 .menu {
     margin-bottom: 8px;
+    &.fullscreen {
+        margin-top: 20px;
+    }
 }
 .menu-item {
     display: flex;

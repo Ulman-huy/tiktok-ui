@@ -22,10 +22,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 var(--default-layout-horizontal-spacer);
+    &.fullscreen {
+        width: 100%;
+    }
 }
 
 .logo-link {
     display: flex;
+    min-width: 300px;
 }
 
 .custom-login {

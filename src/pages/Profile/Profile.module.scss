@@ -1,0 +1,184 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    margin: 0px auto;
+    padding: 32px 24px;
+    box-sizing: content-box;
+    min-height: calc(100vh - 59px);
+    overflow: hidden;
+}
+.info {
+    position: relative;
+    display: flex;
+    width: 624px;
+    justify-content: space-between;
+    .div-info {
+        display: flex;
+    }
+}
+.avatar {
+    width: 112px;
+    height: 112px;
+    border-radius: 52px;
+}
+.div-name {
+    font-family: 'IBM Plex Sans', ProximaNova, Arial, Helvetica, sans-serif;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .nickname {
+        font-size: 32px;
+        margin: 0;
+        line-height: 38px;
+        span {
+            font-size: 20px;
+            margin-bottom: 4px;
+            color: #20d5ec;
+            svg {
+                margin-bottom: 2px;
+            }
+        }
+    }
+    .name {
+        font-size: 18px;
+    }
+    .btn-follow {
+        width: 208px;
+        height: 36px;
+    }
+}
+.btn {
+    display: flex;
+    justify-content: space-around;
+    .btn-share,
+    .btn-more {
+        font-size: 24px;
+    }
+    .btn-share {
+        position: absolute;
+        top: 11px;
+        cursor: pointer;
+        right: 52px;
+    }
+    .btn-more {
+        position: absolute;
+        top: 11px;
+        cursor: pointer;
+        right: 12px;
+    }
+}
+.count {
+    display: flex;
+    color: rgba(18, 18, 18, 0.75);
+    margin-top: 24px;
+    .following-count,
+    .follower-count,
+    .like-count {
+        display: flex;
+        margin-right: 20px;
+        align-items: center;
+        span {
+            margin-inline-end: 6px;
+            font-weight: 700;
+            font-size: 18px;
+            color: rgb(22, 24, 35);
+        }
+    }
+}
+.bio {
+    margin-top: 10px;
+    text-align: left;
+    color: rgb(22, 24, 35);
+    font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    white-space: pre-line;
+    padding-bottom: 24px;
+}
+.video-container {
+    position: relative;
+}
+.select {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 8px;
+    & > div {
+        font-weight: 600;
+        border-bottom: 1px solid rgba(22, 24, 35, 0.2);
+        font-size: 18px;
+        line-height: 48px;
+        width: 230px;
+        text-align: center;
+        color: rgba(22, 24, 35, 0.5);
+        height: 100%;
+        cursor: pointer;
+        &.active {
+            color: rgba(22, 24, 35);
+        }
+    }
+    .text:hover {
+        & ~ .line {
+            transform: translateX(230px);
+        }
+    }
+
+    .line {
+        position: absolute;
+        border-bottom: 3px solid rgba(22, 24, 35);
+        left: 0;
+        height: 0;
+        bottom: -1px;
+        transform: translateX(0);
+        transition: transform 0.3s ease-in-out 0s;
+    }
+}
+.video-content {
+    min-height: 490px;
+    min-width: 520px;
+}
+.div-video-content {
+    display: grid;
+    gap: 52px 16px;
+    grid-template-columns: repeat(auto-fill, minmax(184px, 1fr));
+}
+// CSS VIDEO ITEM
+.video-item {
+    width: 195px;
+    height: 258px;
+    position: relative;
+    cursor: pointer;
+    .video-player {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 4px;
+        background-color: #20d5ec;
+    }
+    video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .caption {
+        font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 400;
+        padding: 2px 4px 0px;
+        height: 28px;
+        box-sizing: content-box;
+        font-size: 16px;
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}

@@ -2,12 +2,12 @@ import styles from './LiveSuggest.module.scss';
 import classNames from 'classnames/bind';
 import SuggestItem from './SuggestItem';
 import { useContext } from 'react';
-import { Data } from '~/layouts/FullScreen/Fullscreen';
+import { DataLive } from '~/layouts/FullScreen/Fullscreen';
 
 const cx = classNames.bind(styles);
 
 function LiveSuggest() {
-    const { data, liveUser } = useContext(Data);
+    const { data, liveUser } = useContext(DataLive);
     const newData = data.filter((item) => item !== liveUser);
     return (
         <div className={cx('live-suggest')}>

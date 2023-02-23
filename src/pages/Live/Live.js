@@ -4,12 +4,12 @@ import LiveItem from './LiveItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp, faL } from '@fortawesome/free-solid-svg-icons';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { Data } from '~/layouts/FullScreen/Fullscreen';
+import { DataLive } from '~/layouts/FullScreen/Fullscreen';
 
 const cx = classNames.bind(styles);
 
 function Live() {
-    const { data } = useContext(Data);
+    const { data } = useContext(DataLive);
 
     const [translateY, setTranslateY] = useState(0);
     const [isLast, setIsLast] = useState(false);

@@ -24,7 +24,7 @@ import {
 } from '~/components/Icons';
 import { useContext } from 'react';
 import { Style } from '../LiveUser';
-import { Data } from '~/layouts/FullScreen/Fullscreen';
+import { DataLive } from '~/layouts/FullScreen/Fullscreen';
 
 const listShare = [
     {
@@ -71,7 +71,7 @@ const listShare = [
 const cx = classNames.bind(styles);
 
 function LiveHeader() {
-    const { liveUser } = useContext(Data);
+    const { liveUser } = useContext(DataLive);
 
     const { hideChat, setHideChat } = useContext(Style);
     const handleHideChat = () => {

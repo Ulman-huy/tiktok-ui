@@ -8,12 +8,12 @@ import Tippy from '@tippyjs/react/headless';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Style } from '../LiveUser';
 import ReactPlayer from 'react-player';
-import { Data } from '~/layouts/FullScreen/Fullscreen';
+import { DataLive } from '~/layouts/FullScreen/Fullscreen';
 
 const cx = classNames.bind(styles);
 
 function LiveContent() {
-    const { liveUser } = useContext(Data);
+    const { liveUser } = useContext(DataLive);
     const { hideChat } = useContext(Style);
 
     const [playing, setPlaying] = useState(true);

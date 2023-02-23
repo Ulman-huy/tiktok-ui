@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import styles from './SuggestedAccounts.module.scss';
+import styles from './AccountsLive.module.scss';
 import AccountItem from './AccountItem';
 import AccountLoading from './AccountLoading';
+import { useEffect, useState } from 'react';
 import { useDebounce } from '~/hooks';
-import {  useEffect, useState } from 'react';
-
 
 const cx = classNames.bind(styles);
 
-function SuggestedAccounts({ label, bottomBtn, tippy = false, data, item = 5, live = false, profile = false }) {
+function AccountsLive({ label, bottomBtn, tippy = false, data, item = 5, live = false, profile = false }) {
     const [renderData, setRenderData] = useState({
         data: data.slice(0, item),
         isShow: true,
@@ -46,9 +45,9 @@ function SuggestedAccounts({ label, bottomBtn, tippy = false, data, item = 5, li
     );
 }
 
-SuggestedAccounts.propTypes = {
+AccountsLive.propTypes = {
     label: PropTypes.string.isRequired,
     item: PropTypes.number,
 };
 
-export default SuggestedAccounts;
+export default AccountsLive;

@@ -7,12 +7,12 @@ import { faPause, faPlay, faRotateRight, faUser, faVolumeHigh, faVolumeTimes } f
 import styles from './LiveItem.module.scss';
 import { Link } from 'react-router-dom';
 import ReactPlayer from 'react-player';
-import { Data } from '~/layouts/FullScreen/Fullscreen';
+import { DataLive } from '~/layouts/FullScreen/Fullscreen';
 
 const cx = classNames.bind(styles);
 
 function LiveItem({ live }) {
-    const { setLiveUser } = useContext(Data);
+    const { setLiveUser } = useContext(DataLive);
 
     const [playing, setPlaying] = useState(false);
     const [volume, setVolume] = useState(25);

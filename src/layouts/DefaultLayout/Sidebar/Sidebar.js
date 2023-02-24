@@ -3,12 +3,10 @@ import styles from './Sidebar.module.scss';
 import classNames from 'classnames/bind';
 import Discover from './Discover';
 import Footer from '../../components/Footer';
-import { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import { useContext } from 'react';
 import Navbar from '~/layouts/components/Navbar';
 import { DataDefault } from '../DefaultLayout';
 import { GlobalContext } from '~/App';
-// import AccountsProfile from '~/components/AccountsProfile/AccountsProfile';
 
 const cx = classNames.bind(styles);
 

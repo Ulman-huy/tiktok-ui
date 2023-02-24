@@ -138,7 +138,7 @@ function VideoItem({ info, follow = true }) {
                             <img src={''} className={cx('img-model')} />
                             <div className={cx('wrapper-video')}>
                                 <Link to="/">
-                                    <video ref={videoRef} className={cx('video')} src={video} loop muted />
+                                    <video ref={videoRef} className={cx('video')} src={video} loop />
                                 </Link>
                                 <div className={cx('report')}>
                                     <span>

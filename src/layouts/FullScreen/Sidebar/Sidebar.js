@@ -10,7 +10,7 @@ import AccountsLive from '~/components/AccountsLive';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
-    const { data, setLiveUser } = useContext(DataLive);
+    const { data } = useContext(DataLive);
 
     const [accountsData, setAccountsData] = useState([]);
 

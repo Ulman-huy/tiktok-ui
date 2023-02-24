@@ -31,7 +31,7 @@ function AccountItem({ tippy, info, live }) {
             {tippy && (
                 <Tippy interactive offset={[-30, 0]} delay={[800, 0]} placement="bottom-start" render={renderPreview}>
                     <div className={cx('account-item')}>
-                        <img className={cx('avatar')} src={'' || info.avatar} alt={info.full_name} />
+                        <img className={cx('avatar')} src={info.avatar} alt={info.full_name} />
                         <div className={cx('item-info')}>
                             <p className={cx('nickname')}>
                                 <strong>{info.nickname}</strong>
